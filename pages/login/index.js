@@ -11,6 +11,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     encryptedInfo:'',
     ivInfo:'',
+    code:'',//登录code
   },
 
   /**
@@ -18,6 +19,15 @@ Page({
    */
   onLoad: function (options) {
     let that=this;
+    // wx.login({
+    //   success(res) {
+    //     if(res.code){
+    //       that.setData({
+    //         code:res.code
+    //       })
+    //     }
+    //   }
+    // })
     let token = wx.getStorageSync('userInfoData').token
     // 查看是否授权
     wx.getSetting({
@@ -35,6 +45,7 @@ Page({
         }
       }
     })
+
   },
   // 微信授权
   getUserInfo: function (e) {
@@ -79,14 +90,15 @@ Page({
     if (e.detail.encryptedData) {
       wx.setStorageSync('bindPhone', true)
       //用户点击允许
-      wx.login({
-        success(res) {
+      // wx.login({
+        // success(res) {
           var datas = {
-            code:res.code,
+            code:that.data.code,
             encryptedDataInfo: that.data.encryptedInfo,
             ivInfo: that.data.ivInfo,
-            encryptedDataPhone: e.detail.encryptedData,
+            encryptedDataPhone: encodeURI(e.detail.encryptedData),
             ivPhone: e.detail.iv,
+            type:2
           };
 
           var jsonStr = JSON.stringify(datas)
@@ -117,8 +129,8 @@ Page({
               }
              
             });
-        }
-      });
+      //   }
+      // });
     } else {
       //用户点击拒绝
       wx.showModal({
@@ -148,7 +160,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+    //登录态刷新
+    let that=this;
+    wx.login({
+      success(res) {
+        if(res.code){
+          that.setData({
+            code:res.code
+          })
+        }
+      }
+    })
   },
 
   /**

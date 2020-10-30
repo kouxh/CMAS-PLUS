@@ -13,7 +13,7 @@ App({
     let bindPhone = wx.getStorageSync('bindPhone');
     let token = wx.getStorageSync('userInfoData').token
     let userInfoData=wx.getStorageSync('userInfoData');
-    let shareUid=wx.getStorageSync('shareUid');
+   
     wx.clearStorageSync(); // 首次进入，清除缓存
     if (bindPhone) {
       setStorage('bindPhone', true, that);
@@ -22,9 +22,7 @@ App({
     if(userInfoData){
       setStorage('userInfoData', userInfoData, that);
     }
-    if(shareUid){
-      setStorage('shareUid', shareUid, that);
-    }
+    
     // 获取用户信息
     wx.getSetting({
       success: res => {
