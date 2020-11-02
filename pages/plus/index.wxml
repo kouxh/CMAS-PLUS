@@ -72,7 +72,7 @@
     <navigator class="footer-box" target="miniProgram" open-type="navigate" app-id="wxc7e3c8a2629a168b" path="pages/member/my/index" extra-data="" version="trial" hover-class="none">
         <image class="logo-img" src="/assets/img/logo2(2).jpg" mode="aspectFill" />
         <!-- <view class="name">CMAS 大讲堂</view> -->
-       <view class="tip">移步CMAS 大讲堂领取会员福利</view>
+       <view class="tip">移步<text class="tip-name">CMAS 大讲堂</text>领取会员福利</view>
     </navigator>
     
 </view>
