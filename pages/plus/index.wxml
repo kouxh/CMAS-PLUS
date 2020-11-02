@@ -54,117 +54,25 @@
                     <view class="fee-price">
                         <van-radio-group value="{{ radio }}" bind:change="onChange">
                             <van-radio name="1" icon-size="26px">599元/年/人</van-radio>
-                            <!-- <van-radio name="2" icon-size="26px">团购 499元/年/人 </van-radio>
-                            <view class="lh" >3人以上（含3人）成团可享受优惠</view>
-                            <van-radio name="3" icon-size="26px">读者优惠 199元/年/人 </van-radio>
-                            <view class="lh">已订阅2020年《管理会计研究》全年刊的读者可享受读者价</view> -->
                         </van-radio-group>
-                     
                     </view>
                 </view>
             </view>
-            <view class="button-btn-box {{isIphoneX ? 'IpX-Bottom':''}}" bind:tap="goPayFn">
+            <view class="button-btn-box" bind:tap="goPayFn">
                 <view class="button-btn-text">成为PLUS会员</view>
             </view>
+            
         </view>
     </view>
-    <!-- 团购弹框 -->
-    <!-- <van-popup show="{{ groupShow }}" round closeable position="bottom" bind:close="onClose1" catchtouchmove="true">
-        <view class="group-box">
-            <view class="introduce">
-                <view class="left">
-                    <van-icon name="balance-o" size="20px"/>
-                </view>
-                <view class="right">
-                    <view class="text">团购  499/年/人</view>
-                    <view class="info">3人以上（含3人）成团可享受优惠</view>
-                </view>
-            </view>
-            <view class="pay-type">
-                <view class="type-one">
-                    <view class="top">
-                         <view class="circle"></view>
-                         <view class="type-text">统一付</view>
-                         <van-icon name="ellipsis" size="24px"/>
-                         <view class="next-btn" catchtap="nextFn">下一步</view>
-                    </view>
-                    <view class="down">*集中采购请选择</view>
-                </view>
-                <view class="type-one">
-                    <view class="top">
-                         <view class="circle"></view>
-                         <view class="type-text">各自付款</view>
-                         <van-icon name="ellipsis" size="24px"/>
-                         <view class="next-btn" bindtap="originateFn" wx:if='{{groupType==1}}' style="width:160rpx;">发起成团</view>
-                         <view class="next-btn" bindtap="groupFn" wx:if='{{groupType==2}}' style="width:160rpx;">成团详情</view>
-                    </view>
-                    <view class="down">*复制成团链接，发给其他成团人员，成团后Plus会员权限自动开启。</view>
-                </view>
-            </view>
-        </view>
-    </van-popup> -->
-    <!-- 统一付 -->
-    <!-- <van-popup show="{{ uniformShow }}" round closeable position="bottom" bind:close="onClose2" catchtouchmove="true">
-       <view class="reader-box">
-            <view class="introduce">
-                <view class="content">请填写其他成团人员手机号码，该号码注册后，将自动升级为plus会员。</view>
-            </view>
-            <view class="tel-box">
-                <block wx:for="{{conLists}}" wx:key="index">
-                    <view class='template_title_list flex-x'>
-                    <input placeholder='成团人手机号' bindinput='changeConTitle' data-index='{{index}}' maxlength="11 "type="number" bindblur="onBlur" ></input>
-                    <view class="close" bindtap='del' data-index='{{index}}'><van-icon name="close"  /></view>
-                    
-                    </view>
-                </block>
-                <view class='template_title' bindtap='add'>
-                    <view class="add">+</view>
-                    <view class="tip">*点击可增加成团人手机号</view>
-                </view>
-            </view>
-            <view class="price-box " style="padding-left:30rpx;">
-                <van-icon name="balance-o" />
-                <view class="price">支付金额：</view>
-                <view class="money">{{groupMoney}}元</view>
-            </view>
-            <view class="pay-box"  bindtap="groupConfirmPay">确认支付</view>
-        </view>
-    </van-popup> -->
-    <!-- 读者优惠 -->
-    <!-- <van-popup show="{{ readerShow }}" round closeable position="bottom" bind:close="onClose" catchtouchmove="true">
-        <view class="reader-box">
-            <view class="introduce">
-                <view class="content">感谢您对CMAS的支持，付款后开启系统识别，请准确填写，购买人手机号码，号码不正确将无法使用本优惠。
-                </view>
-                <view class="contact" bindtap="makePhoneCall">如有疑问请咨询：{{contactPhone}}	</view>
-            </view>
-            <view class="tel-box">
-                <view class="top">
-                    <view class="circle"></view>
-                    <view class="text">订阅手机号为注册手机号</view>
-                </view>
-                <view class="top">
-                    <view class="circle"></view>
-                    <view class="text">订阅时使用的手机号</view>
-                </view>
-                <view class="tel-input">
-                    <input placeholder='请输入手机号' maxlength="11" type="number" bindinput="mobileFn" value="{{mobile}}"></input>
-                    <view class="code" wx:if="{{sendState==0}}" bind:tap="getCodeFn">获取验证码</view>
-                    <view class="code send-ing" wx:if="{{sendState==1}}">发送中…</view>
-                    <view class="code send-ing" wx:if="{{sendState==2}}">重新获取({{count}})</view>
-                    <view class="code" wx:if="{{sendState==3}}" bind:tap="getCodeFn">重新获取</view>
-                </view>
-                <view class="tel-input" wx:if="{{mobile!=''}}">
-                    <input placeholder='请输入验证码' type="number" bindinput="codeFn" value="{{code}}"></input>
-                </view>
-            </view>
-            <view class="price-box">
-                <van-icon name="balance-o" />
-                <view class="price">读者优惠价格：</view>
-                <view class="money">199元/年/人</view>
-            </view>
-            <view class="pay-box" bindtap="confirmPay">确认支付</view>
-        </view>
-    </van-popup> -->
-
+    <!-- appd-id:小程序appid
+    path:小程序路径
+    extra-data:跳转小程序携带的参数
+    version:当target="miniProgram"时有效，要打开的小程序版本，有效值 develop（开发版），trial（体验版），release（正式版），仅在当前小程序为开发版或体验版时此参数有效；如果当前小程序是正式版，则打开的小程序必定是正式版。
+    <navigator target="miniProgram" open-type="navigate" app-id="" path="" extra-data="" version="release">打开绑定的小程序</navigator> -->
+    <navigator class="footer-box" target="miniProgram" open-type="navigate" app-id="wxc7e3c8a2629a168b" path="pages/member/my/index" extra-data="" version="trial" hover-class="none">
+        <image class="logo-img" src="/assets/img/logo2(2).jpg" mode="aspectFill" />
+        <!-- <view class="name">CMAS 大讲堂</view> -->
+       <view class="tip">移步CMAS 大讲堂领取会员福利</view>
+    </navigator>
+    
 </view>
