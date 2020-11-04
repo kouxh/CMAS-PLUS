@@ -1,78 +1,81 @@
 <view class="pages-plus-index">
-    <view class="header"></view>
-    <view class="plus-content">
-        <view class="limits-box">
-            <view class="plus-title">
-                <view class="text">CMAS PLUS会员招募</view>
-                <image class="img" src="/assets/img/icon/vip2.png" mode="aspectFill" />
-            </view>
-            <view class="limits-frame">
-                <view class="limits">
-                    <image class="img" src="/assets/img/icon/vip1.png" mode="aspectFill" />
-                    <view class="text">加入PLUS会员，即可享有以下权益：</view>
-                </view>
-                <view class="each-limits">
-                    <view class="up">
-                        <image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
-                        <view class="text">赠阅全年《管理会计研究》杂志一套，共六本，价值300元（50元/本，共六期）</view>
-                    </view>
-                </view>
-                <view class="each-limits">
-                    <view class="up">
-                        <image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
-                        <view class="text"> 畅读管理会计研究网站付费文章</view>
-                    </view>
-                </view>
-                <view class="each-limits">
-                    <view class="up">
-                        <image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
-                        <view class="text">观看全年《CMAS大讲堂》课程，包含直播及回看</view>
-                    </view>
-                </view>
-                <view class="each-limits">
-                    <view class="up">
-                        <image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
-                        <view class="text">观看全年《CMAS对话》高端访谈节目</view>
-                    </view>
-                </view>
-                <view class="each-limits">
-                    <view class="up">
-                        <image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
-                        <view class="text">观看全年“走进名企”实务直播节目</view>
-                    </view>
-                </view>
-                <view class="each-limits">
-                    <view class="up">
-                        <image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
-                        <view class="text">优先受邀参加主题沙龙、年度峰会等线下活动</view>
-                    </view>
-                </view>
-            </view>
-            <view class="vip-fee">
-                <view class="fee-box">
-                    <view class="fee-tit">PLUS会员费：</view>
-                    <view class="fee-price">
-                        <van-radio-group value="{{ radio }}" bind:change="onChange">
-                            <van-radio name="1" icon-size="26px">599元/年/人</van-radio>
-                        </van-radio-group>
-                    </view>
-                </view>
-            </view>
-            <view class="button-btn-box" bind:tap="goPayFn">
-                <view class="button-btn-text">成为PLUS会员</view>
-            </view>
-            
-        </view>
-    </view>
-    <!-- appd-id:小程序appid
+	<view class="header"></view>
+	<view class="plus-content">
+		<view class="limits-box">
+			<view class="plus-title">
+				<view class="text">CMAS PLUS会员招募</view>
+				<image class="img" src="/assets/img/icon/vip2.png" mode="aspectFill" />
+			</view>
+			<view class="limits-frame">
+				<view class="limits">
+					<image class="img" src="/assets/img/icon/vip1.png" mode="aspectFill" />
+					<view class="text">加入PLUS会员，即可享有以下权益：</view>
+				</view>
+				<view class="each-limits">
+					<view class="up">
+						<image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
+						<view class="text">赠阅全年《管理会计研究》杂志一套，共六本，价值300元（50元/本，共六期）</view>
+					</view>
+				</view>
+				<view class="each-limits">
+					<view class="up">
+						<image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
+						<view class="text"> 畅读管理会计研究网站付费文章</view>
+					</view>
+				</view>
+				<view class="each-limits">
+					<view class="up">
+						<image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
+						<view class="text">观看全年《CMAS大讲堂》课程，包含直播及回看</view>
+					</view>
+				</view>
+				<view class="each-limits">
+					<view class="up">
+						<image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
+						<view class="text">观看全年《CMAS对话》高端访谈节目</view>
+					</view>
+				</view>
+				<view class="each-limits">
+					<view class="up">
+						<image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
+						<view class="text">观看全年“走进名企”实务直播节目</view>
+					</view>
+				</view>
+				<view class="each-limits">
+					<view class="up">
+						<image class="img" src="/assets/img/icon/ticket.png" mode="aspectFill" />
+						<view class="text">优先受邀参加主题沙龙、年度峰会等线下活动</view>
+					</view>
+				</view>
+			</view>
+			<view class="vip-fee">
+				<view class="fee-box">
+					<view class="fee-tit">PLUS会员费：</view>
+					<view class="fee-price">
+						<van-radio-group value="{{ radio }}" bind:change="onChange">
+							<van-radio name="1" icon-size="26px">599元/年/人</van-radio>
+						</van-radio-group>
+					</view>
+				</view>
+			</view>
+			<view wx:if="{{vipType == 0}}" class="button-btn-box {{isIphoneX?'IpX-Bottom':''}}" bind:tap="goPayFn">
+				<view class="button-btn-text" wx:if="{{vipType==0}}">成为PLUS会员</view>
+			</view>
+			<view wx:if="{{vipType !==0}}" class="button-btn-box" bind:tap="goPayFn">
+				<view class="button-btn-text">PLUS会员续费</view>
+			</view>
+
+		</view>
+	</view>
+	<!-- appd-id:小程序appid
     path:小程序路径
     extra-data:跳转小程序携带的参数
     version:当target="miniProgram"时有效，要打开的小程序版本，有效值 develop（开发版），trial（体验版），release（正式版），仅在当前小程序为开发版或体验版时此参数有效；如果当前小程序是正式版，则打开的小程序必定是正式版。
     <navigator target="miniProgram" open-type="navigate" app-id="" path="" extra-data="" version="release">打开绑定的小程序</navigator> -->
-    <navigator class="footer-box" target="miniProgram" open-type="navigate" app-id="wxc7e3c8a2629a168b" path="pages/member/my/index" extra-data="" version="trial" hover-class="none">
-        <image class="logo-img" src="/assets/img/logo2(2).jpg" mode="aspectFill" />
-        <!-- <view class="name">CMAS 大讲堂</view> -->
-       <view class="tip">移步<text class="tip-name">CMAS 大讲堂</text>领取会员福利</view>
-    </navigator>
-    
+	<navigator wx:if='{{vipType !==0}}' class="footer-box" target="miniProgram" open-type="navigate" app-id="wxc7e3c8a2629a168b" path="pages/member/my/index" extra-data="" version="trial" hover-class="none">
+		<image class="logo-img" src="/assets/img/logo2(2).jpg" mode="aspectFill" />
+		<!-- <view class="name">CMAS 大讲堂</view> -->
+		<view class="tip">移步<text class="tip-name">CMAS 大讲堂</text>领取会员福利</view>
+	</navigator>
+
 </view>

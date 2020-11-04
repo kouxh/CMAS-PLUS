@@ -8,11 +8,29 @@ Page({
     repeatBool: true, // 防止重复请求
     payData: {}, // 支付配置参数
     radio: '1',//默认选中单选框
+    vipType:0
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.checkUserVip();
+  },
+  //判断是否是VIP
+  checkUserVip(){
+    let that=this;
+    getApp()
+      .globalData.api.checkUserVip({
+        uid:wx.getStorageSync('userInfoData').uid
+      }).then(res=>{
+        if (res.bol == true){
+          that.setData({
+            vipType:res.data.is_vip,
+          })
+        }else{
+        wx.showToast({ title: "获取数据失败，请稍后重试哟~", icon: "none" });
+        }
+   })
   },
 //新支付统一接口 599
   unifiedPay(){

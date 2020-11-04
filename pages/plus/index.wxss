@@ -206,7 +206,7 @@
     color: #9a9a9a;
     font-size: 26rpx;
 }
-.tip-name{
-    /* color: #f00; */
-    /* text-decoration:underline; */
-}
+/* .tip-name{
+    color: #f00;
+    text-decoration:underline;
+} */
