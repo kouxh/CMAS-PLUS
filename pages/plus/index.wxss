@@ -162,12 +162,18 @@
     letter-spacing: 2rpx;
     padding-left: 8rpx;
 }
+.button-btn-box1 {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: #f8f8f8;
+}
 
 .button-btn-box {
     margin-top: 40rpx;
 }
 
-.button-btn-box .button-btn-text {
+ .button-btn-text {
     width: 750rpx;
     height: 92rpx;
     font-size: 28rpx;
