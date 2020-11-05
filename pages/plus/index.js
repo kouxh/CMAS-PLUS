@@ -99,7 +99,7 @@ Page({
             name:'plus小程序'
           },
          //**重点**要打开的小程序版本，有效值 develop（开发版），trial（体验版），release（正式版） 
-          envVersion: 'trial',
+          envVersion: 'release',
           success(res) {
             // 打开成功
             console.log(res,'小程序跳转成功')

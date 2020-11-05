@@ -71,7 +71,7 @@
     extra-data:跳转小程序携带的参数
     version:当target="miniProgram"时有效，要打开的小程序版本，有效值 develop（开发版），trial（体验版），release（正式版），仅在当前小程序为开发版或体验版时此参数有效；如果当前小程序是正式版，则打开的小程序必定是正式版。
     <navigator target="miniProgram" open-type="navigate" app-id="" path="" extra-data="" version="release">打开绑定的小程序</navigator> -->
-	<navigator wx:if='{{vipType !==0}}' class="footer-box" target="miniProgram" open-type="navigate" app-id="wxc7e3c8a2629a168b" path="pages/member/my/index" extra-data="" version="trial" hover-class="none">
+	<navigator wx:if='{{vipType !==0}}' class="footer-box" target="miniProgram" open-type="navigate" app-id="wxc7e3c8a2629a168b" path="pages/member/my/index" extra-data="" version="release" hover-class="none">
 		<image class="logo-img" src="/assets/img/logo2(2).jpg" mode="aspectFill" />
 		<view class="tip">移步<text class="tip-name">CMAS 大讲堂</text>领取会员福利</view>
 	</navigator>
