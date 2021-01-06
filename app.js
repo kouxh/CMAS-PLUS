@@ -17,7 +17,6 @@ App({
     wx.clearStorageSync(); // 首次进入，清除缓存
     if (bindPhone) {
       setStorage('bindPhone', true, that);
-      console.log(bindPhone,'8888')
     }
     if(userInfoData){
       setStorage('userInfoData', userInfoData, that);
@@ -26,9 +25,7 @@ App({
     // 获取用户信息
     wx.getSetting({
       success: res => {
-        console.log( res,res.authSetting['scope.userInfo'],'9987722')
         if (res.authSetting['scope.userInfo'] && bindPhone && token!=undefined) {
-          console.log( res.authSetting['scope.userInfo'],'9983377')
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {

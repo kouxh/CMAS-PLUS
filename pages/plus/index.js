@@ -14,7 +14,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.checkUserVip();
+    if(wx.getStorageSync('userInfoData').uid!==undefined){
+      this.checkUserVip();
+    }
+    
   },
   //判断是否是VIP
   checkUserVip(){
@@ -32,7 +35,30 @@ Page({
         }
    })
   },
-//新支付统一接口 599
+
+  
+ // 点击立即支付(单独购买599)
+   goPayFn() {
+    let that = this;
+    that.setData({ repeatBool: false }); // 防止重复请求
+    let bindPhone = wx.getStorageSync('bindPhone');
+    let token = wx.getStorageSync('userInfoData').token;
+      wx.getSetting({
+        success: res => {
+          console.log(res.authSetting['scope.userInfo'],'---')
+          if (!res.authSetting['scope.userInfo']  || token==undefined || bindPhone=='') {
+                wx.reLaunch({
+                 url: '/pages/login/index'
+                })
+          }else{
+            // 请求接口获取唤醒支付的参数
+              that.unifiedPay();
+          }
+        }
+      })
+    
+  },
+  //新支付统一接口 599
   unifiedPay(){
     let that=this;
     var jsonDatas={};
@@ -55,31 +81,8 @@ Page({
         that.setData({
           payData: res.data,
         })
-        console.log(that.data.payData, '读者唤起支付页面')
         that.arousePayFn();
       });
-  },
-  
- // 点击立即支付(单独购买599)
-   goPayFn() {
-    let that = this;
-    that.setData({ repeatBool: false }); // 防止重复请求
-    let bindPhone = wx.getStorageSync('bindPhone');
-    let token = wx.getStorageSync('userInfoData').token;
-      wx.getSetting({
-        success: res => {
-          console.log(res.authSetting['scope.userInfo'] ,'9999999',token,bindPhone)
-          if (!res.authSetting['scope.userInfo']  || token==undefined || bindPhone=='') {
-                wx.reLaunch({
-                 url: '/pages/login/index'
-                })
-          }else{
-            // 请求接口获取唤醒支付的参数
-              that.unifiedPay();
-          }
-        }
-      })
-    
   },
   // 唤起支付弹框
   arousePayFn() {
@@ -111,6 +114,7 @@ Page({
       },
       fail(res) {
         that.setData({ repeatBool: true });
+        console.log(res,'支付失败,请求重试')
         wx.showToast({ title: "支付失败,请求重试", icon: "none" });
       },
       complete(res) {

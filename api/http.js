@@ -9,7 +9,6 @@ export default {
       httpClient.fetchPost(url, params, that.getOptions(options), addUrl).then(
         response => {
           resolve(response);
-          console.log(response,'9999997744477777777777')
           if (response.code == 10043) {
             wx.showToast({
               title: "登录过期，请重新登录",
@@ -18,7 +17,6 @@ export default {
             wx.removeStorageSync('userInfoData');
             wx.removeStorageSync('bindPhone');
             getApp().globalData.userInfo=null;
-            console.log( getApp().globalData.userInfo,'777')
             return wx.reLaunch({ url: '/pages/login/index' })
           }
         },
@@ -39,7 +37,6 @@ export default {
       httpClient.fetchGet(url, params, that.getOptions(options), addUrl).then (
         response => {
           resolve(response);
-          console.log(response,'9999997777777777777')
           if (response.code == 10043) {
             wx.showToast({
               title: "登录过期，请重新登录",
@@ -48,7 +45,6 @@ export default {
             wx.removeStorageSync('userInfoData');
             wx.removeStorageSync('bindPhone');
             getApp().globalData.userInfo=null;
-            console.log( getApp().globalData.userInfo,'777')
             return wx.reLaunch({ url: '/pages/login/index' })
           }
         },
