@@ -11,7 +11,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     encryptedInfo:'',
     ivInfo:'',
-    code:'',//登录code
+    code:'',//登录code1
   },
 
   /**
