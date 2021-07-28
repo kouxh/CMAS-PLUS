@@ -45,7 +45,6 @@ Page({
     let token = wx.getStorageSync('userInfoData').token;
       wx.getSetting({
         success: res => {
-          console.log(res.authSetting['scope.userInfo'],'---')
           if (!res.authSetting['scope.userInfo']  || token==undefined || bindPhone=='') {
                 wx.reLaunch({
                  url: '/pages/login/index'

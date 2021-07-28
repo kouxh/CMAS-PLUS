@@ -19,15 +19,6 @@ Page({
    */
   onLoad: function (options) {
     let that=this;
-    // wx.login({
-    //   success(res) {
-    //     if(res.code){
-    //       that.setData({
-    //         code:res.code
-    //       })
-    //     }
-    //   }
-    // })
     let token = wx.getStorageSync('userInfoData').token
     // 查看是否授权
     wx.getSetting({
@@ -45,48 +36,67 @@ Page({
         }
       }
     })
-
   },
   // 微信授权
-  getUserInfo: function (e) {
-    if(e.detail.userInfo){
-       //用户按了允许授权按钮
-       wx.showToast({
-        title: '授权成功',
-        icon: 'success',
-        duration: 1000
-      })
-       app.globalData.userInfo = e.detail.userInfo
-      //  wx.setStorageSync('www',e.detail.userInfo)
-       console.log(e,'用户授权e.detail.userInfo')
-      this.setData({
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true,
-        hasBindMobile:true,
-        encryptedInfo: e.detail.encryptedData,//用户授权的加密数据
-        ivInfo: e.detail.iv,//用户授权的iv
-      })
-      console.log(this.data.hasBindMobile,'0000this.data.hasBindMobile')
-    }else{
-       //用户按了拒绝按钮
-       wx.showModal({
-         title:'警告',
-         content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-         showCancel: false,
-         confirmText: '返回授权',
-         success: function(res) {
-          if (res.confirm) {
-              console.log('用户点击了“返回授权”');
-          }
-      }
+  // getUserInfo: function (e) {
+  //   if(e.detail.userInfo){
+  //      //用户按了允许授权按钮
+  //      wx.showToast({
+  //       title: '授权成功',
+  //       icon: 'success',
+  //       duration: 1000
+  //     })
+  //      app.globalData.userInfo = e.detail.userInfo
+  //     //  wx.setStorageSync('www',e.detail.userInfo)
+  //      console.log(e,'用户授权e.detail.userInfo')
+  //     this.setData({
+  //       userInfo: e.detail.userInfo,
+  //       hasUserInfo: true,
+  //       hasBindMobile:true,
+  //       encryptedInfo: e.detail.encryptedData,//用户授权的加密数据
+  //       ivInfo: e.detail.iv,//用户授权的iv
+  //     })
+  //     console.log(this.data.hasBindMobile,'0000this.data.hasBindMobile')
+  //   }else{
+  //      //用户按了拒绝按钮
+  //      wx.showModal({
+  //        title:'警告',
+  //        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+  //        showCancel: false,
+  //        confirmText: '返回授权',
+  //        success: function(res) {
+  //         if (res.confirm) {
+  //             console.log('用户点击了“返回授权”');
+  //         }
+  //     }
 
-       })
-    }
+  //      })
+  //   }
+  // },
+  getUserProfile(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        wx.showToast({
+          title: '授权成功',
+          icon: 'success',
+          duration: 1000
+        })
+        app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true,
+            hasBindMobile:true,
+            encryptedInfo: res.encryptedData,//用户授权的加密数据
+            ivInfo: res.iv,//用户授权的iv
+          })
+      }
+    })
   },
   // 手机号授权
   getPhoneNumber (e) {
-    console.log(e,'手机号授权888')
-      let that = this;
+    let that = this;
     if (e.detail.encryptedData) {
       wx.setStorageSync('bindPhone', true)
       //用户点击允许
